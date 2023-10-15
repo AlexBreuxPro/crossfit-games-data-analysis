@@ -1,0 +1,22 @@
+version: '1'
+
+services:
+  jupyter:
+    image: crossfit-games-data-analysis-jupyter:latest
+    command: /app/shell/start.sh
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./data:/app/data
+      - crossfit-data-volume:/app/db
+      - notebook-volume:/app/jupyter
+    user: appuser
+    environment:
+      - DUCKDB_DATA_PATH=/app/data/df_games_and_open_with_2023.csv
+      - DUCKDB_DATABASE_PATH=/app/db/crossfit_analysis.duckdb
+volumes:
+  crossfit-data-volume:
+  notebook-volume:

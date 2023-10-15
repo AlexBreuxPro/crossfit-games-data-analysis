@@ -1,0 +1,10 @@
+jupyter
+pandas
+duckdb
+numpy
+seaborn
+scikit-learn
+flake8
+sqlfluff
+black
+truffleHog
