@@ -33,7 +33,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: crossfit-games-data-analysis-jupyter:latest
+      image: ${{ secrets.DOCKERHUB_USERNAME }}/crossfit-data-analysis-jupyter:latest
 
     steps:
     - name: Check out code
