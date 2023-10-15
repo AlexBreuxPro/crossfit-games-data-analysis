@@ -25,18 +25,16 @@ jobs:
     - name: Push the Docker image to Docker Hub
       run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/crossfit-games-data-analysis-jupyter:latest
 
-  
-  
   main_job:
     needs: build_image
     
     runs-on: ubuntu-latest
 
     container:
-      image: ${{ env.DOCKER_IMAGE }}
-
-    env:
-      DOCKER_IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/crossfit-games-data-analysis-jupyter:latest
+      image: alexbreux/crossfit-games-data-analysis-jupyter:latest
+      credentials:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
 
     steps:
     - name: Check out code
