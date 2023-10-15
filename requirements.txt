@@ -4,8 +4,3 @@ duckdb
 numpy
 seaborn
 scikit-learn
-flake8
-sqlfluff
-black[jupyter]
-truffleHog
-nbstripout

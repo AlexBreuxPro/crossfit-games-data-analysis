@@ -1,0 +1,39 @@
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.4.0
+    hooks:
+    -   id: trailing-whitespace
+    -   id: end-of-file-fixer
+
+-   repo: https://github.com/psf/black
+    rev: 21.5b2
+    hooks:
+    -   id: black
+        language_version: python3.8
+
+-   repo: https://gitlab.com/pycqa/flake8
+    rev: 3.8.4
+    hooks:
+    -   id: flake8
+        args: ['--count', '--select=E9,F63,F7,F82', '--show-source', '--statistics']
+
+-   repo: https://github.com/kynan/nbstripout
+    rev: 0.4.0
+    hooks:
+    -   id: nbstripout
+        files: jupyter/.*\.ipynb$
+
+# Dependencies need to be installed locally
+-   repo: local
+    hooks:
+    -   id: sqlfluff-lint
+        name: Lint SQL with sqlfluff
+        entry: sqlfluff lint
+        args: ['sql/']
+        language: system
+
+    -   id: trufflehog
+        name: Check for secrets with truffleHog
+        entry: truffleHog
+        args: ['--regex', '--entropy=False', './']
+        language: system
