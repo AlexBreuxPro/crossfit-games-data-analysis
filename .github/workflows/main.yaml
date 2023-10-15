@@ -33,7 +33,10 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: ${{ secrets.DOCKERHUB_USERNAME }}/crossfit-games-data-analysis-jupyter:latest
+      image: ${{ env.DOCKER_IMAGE }}
+
+    env:
+      DOCKER_IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/crossfit-games-data-analysis-jupyter:latest
 
     steps:
     - name: Check out code
